@@ -1,34 +1,22 @@
-class Pair implements Comparable<Pair>{
-    int idx;
-     int val;
-    Pair(int idx,int val){
-        this.idx=idx;
-        this.val = val;
-    }
-    @Override
-    public int compareTo(Pair p){
-     return p.val-this.val;
-    }
-}
 class Solution {
     public int[] maxSlidingWindow(int[] nums, int k) {
+        if(nums==null || nums.length==0) return new int[0];
         int n = nums.length;
-        int ans[] = new int[n-k+1];
-        int idx =0;
-        PriorityQueue<Pair> pq = new PriorityQueue<>();
-        int i =0;
-        int j=0;
-        while(j<n){
-           pq.add(new Pair(j,nums[j]));
-           while(!pq.isEmpty() && pq.peek().idx<i){
-            pq.poll();
-           }
-           if(j-i+1==k){
-            ans[idx++] = pq.peek().val;
-            i++;
-           }
-           j++;
-      }   
-      return ans;    
+        int []ans = new int[n-k+1];
+        Deque<Integer> d = new LinkedList<>();
+        for(int i =0;i<n;i++){
+            if(!d.isEmpty() && d.peekFirst()<=i-k){
+                d.pollFirst();
+            }
+
+            while(!d.isEmpty() && nums[d.peekLast()]<nums[i]){
+                d.pollLast();
+            }
+            d.offerLast(i);
+            if(i>=k-1){
+                ans[i-k+1] = nums[d.peekFirst()];
+            }
+        }
+        return ans;
     }
 }
