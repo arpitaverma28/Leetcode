@@ -15,11 +15,8 @@ class Solution {
             }
             i++;
            }
-           int total =0;
-           for(int k : hm.values()){
-            total +=k;
-           }
-           ans = Math.max(ans,total);
+         
+           ans = Math.max(ans,j-i+1);
         }
         return ans;
     }
