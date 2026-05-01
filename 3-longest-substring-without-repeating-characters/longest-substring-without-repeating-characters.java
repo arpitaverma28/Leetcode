@@ -7,11 +7,11 @@ class Solution {
         for(int j =0;j<s.length();j++){
             char curr = s.charAt(j);
 
-                if(hm.containsKey(curr)){
-                 i = Math.max(i, hm.get(curr) + 1);
+                while(hm.containsKey(curr)){
+                 hm.remove(s.charAt(i++));
                 }
                 hm.put(curr,j);
-                ans = Math.max(ans,j-i+1);
+                ans = Math.max(ans,hm.size());
             
         }
         return ans;
