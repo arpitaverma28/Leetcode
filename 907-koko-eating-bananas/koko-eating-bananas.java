@@ -1,25 +1,24 @@
 class Solution {
-    public int timeTaken(int h,int []nums){
-        int ans =0;
+    public long timeTaken(int k,int []nums){
+        long ans =0;
         for(int i : nums){
-             ans += Math.ceil((double)i/h);
+            // ans += Math.ceil((double)i/h);
+            ans += (i+k-1)/k;
         }
         return ans;
     }
     public int minEatingSpeed(int[] piles, int h) {
         
      int n = piles.length;
-     int high = piles[0];
-     for(int i =1;i<n;i++){
-        if(piles[i]>high){
-            high = piles[i];
-        }
+     int high =0;
+     for(int i :piles){
+        high = Math.max(high,i);
      }
      int ans = high;
      int low =1;
      while(low<=high){
         int mid = low + (high-low)/2;
-        int t = timeTaken(mid,piles);
+        long t = timeTaken(mid,piles);
         if(t<=h){
             ans =mid;
             high=mid-1;
