@@ -1,17 +1,23 @@
 class Solution {
     public String makeSmallestPalindrome(String s) {
-        char arr[] = s.toCharArray();
-        int i =0;
-        int j =arr.length-1;
-        while(i<j){
-            if(arr[i] != arr[j]){
-                char min = (char) Math.min(arr[i],arr[j]);
-                arr[i] = min;
-                arr[j] = min;
+    char[] arr = s.toCharArray();
+    int left = 0, right = arr.length - 1;
+    int ops = 0;
+    while (left < right) {
+        if (arr[left] != arr[right]) {
+            if (arr[left] > arr[right]) {
+                arr[left] = arr[right];
+            } else {
+                arr[right] = arr[left];
             }
-            i++;
-            j--;
+            ops++;
         }
-        return new String(arr);
+        left++;
+        right--;
     }
+    if (ops == 0) {
+        return s;
+    }
+    return new String(arr);
+}
 }
