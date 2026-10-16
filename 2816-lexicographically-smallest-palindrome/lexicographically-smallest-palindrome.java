@@ -1,19 +1,17 @@
 class Solution {
     public String makeSmallestPalindrome(String s) {
+        char arr[] = s.toCharArray();
         int i =0;
-        int j = s.length()-1;
-        StringBuilder sb = new StringBuilder(s);
+        int j =arr.length-1;
         while(i<j){
-            if(sb.charAt(i) != sb.charAt(j)){
-                if(sb.charAt(i)<sb.charAt(j)){
-                    sb.setCharAt(j,sb.charAt(i));
-                }else{
-                    sb.setCharAt(i,sb.charAt(j));
-                }
+            if(arr[i] != arr[j]){
+                char min = (char) Math.min(arr[i],arr[j]);
+                arr[i] = min;
+                arr[j] = min;
             }
             i++;
             j--;
         }
-        return sb.toString();
+        return new String(arr);
     }
 }
