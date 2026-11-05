@@ -1,19 +1,18 @@
 class Solution {
     public int findTheDistanceValue(int[] arr1, int[] arr2, int d) {
-        int a1 =0;
+        
         int ans =0;
-        while(a1<arr1.length){
-            int a2 =0;
+        for(int i =0;i<arr1.length;i++){
+            int j =0;
             boolean isPossible = true;
-            while(a2<arr2.length){
-                if(Math.abs(arr1[a1]-arr2[a2]) <= d){
-                    isPossible = false;
+            while(j<arr2.length){
+                if(Math.abs(arr1[i] - arr2[j])<=d){
+                    isPossible = false ;
                     break;
                 }
-                a2++;
+                j++;
             }
             if(isPossible) ans++;
-            a1++;
         }
         return ans;
     }
